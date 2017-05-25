@@ -2,7 +2,7 @@
 
 ## 引入
 
-在需要使用本SDK的页面引入支付核心代码
+在需要使用本SDK的页面引入：
   
   ```php
   require('sdk/PayingCloud.php');
