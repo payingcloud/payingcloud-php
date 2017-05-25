@@ -1,12 +1,48 @@
 # PayingCloud PHP SDK 使用说明
 
-## 引入
+## 使用概述
 
-在需要使用本SDK的页面引入：
+使用 PayingCloud SDK 很简单。
+首先，在相应页面引入 SDK：
   
-  ```php
-  require('sdk/PayingCloud.php');
-  ```
+```php
+require('sdk/PayingCloud.php');
+```
+
+然后，使用accessKeyId和accessKeySecret构造一个PayingCloud类型对象：
+
+```php
+$payingcloud = new PayingCloud('Your ACCESS_KEY_ID', 'Your ACCESS_KEY_SECRET');
+```
+
+最后，根据业务需要调用相应方法发送请求并对返回结果做处理，例如：
+
+```php
+/**
+ *  付款演示
+ */
+require('sdk/PayingCloud.php');
+require('DemoConfig.php');
+
+$payingcloud = new PayingCloud(DemoConfig::ACCESS_KEY_ID, DemoConfig::ACCESS_KEY_SECRET);
+
+$amount = 1;
+$metadata = '元数据';
+$subject = '金牛座软件开发';
+$extra = array('returnUrl' => 'http://localhost:8080/order/charge/return');
+$channel = 'WXPAY_NATIVE';
+$notifyUrl = 'http://localhost:8080/order/charge/success';
+$remark = '备注';
+
+$r = $payingcloud->Charge(DemoConfig::GetUniqueId(), $subject, $amount, $channel, $remark, $extra, $metadata, $notifyUrl);
+
+print_r($r);
+
+$error = $r['error'];
+$errorDescription = json_decode($r['errorDescription'], true);
+$errorInfo = $errorDescription['error'];
+$errorDescriptionInfo = $errorDescription['errorDescription'];
+```
 
 ## 付款
 
