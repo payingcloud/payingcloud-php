@@ -2,7 +2,9 @@
 
 ## 使用概述
 
-使用 PayingCloud SDK 很简单。
+注：在使用本SDK前建议先阅读[API文档](https://payingcloud.github.io/payingcloud-api-doc/)对基本概念有所了解。
+
+使用 PayingCloud PHP SDK 很简单。
 首先，在相应页面引入 SDK：
   
 ```php
